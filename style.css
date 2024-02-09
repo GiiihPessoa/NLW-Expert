@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+
+*, :root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  /* essas configurações abaixo servem para deixar a letra mais "fina, elegante" */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothinf: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  background-color: #0F172A;
+}
+
+main{
+  padding: 20px;
+  max-width: 648px;
+  margin: 0 auto 64px;
+}
+
+header{
+  margin-top: 64px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid aqua;
+}
+
+header h1{
+  margin-top: 24px;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+/*auxiliar para que possa ser enumerado as perguntas, nesse caso*/
+#quiz{
+  counter-reset: quiz-item;
+}
+
+.quiz-item{
+  margin-top: 24px;
+  border: 1px solid aqua;
+  border-radius: 6px;
+
+  /* usado para que não permita que as bordas fiquem transbordando */
+  overflow: hidden;
+}
+
+.quiz-item h3{
+  padding: 16px 20px;
+  color: white;
+  background-color: #1e2938;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/*vai servir para enumerar as perguntas nesse caso*/
+.quiz-item h3::before{
+  counter-increment: quiz-item;
+  content: counter(quiz-item);
+  padding: 10px;
+
+  background-color: rgb(54, 24, 226);
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*usado para não deixar as bolinhas ficarem encurtando ou expandindo caso você diminua ou aumenta a pagina*/
+  flex-shrink: 0;
+}
+
+.quiz-item dl{
+  padding: 20px 24px;
+
+  /* usado para dar espaçamento entre os elementos, é necessário sempre esses dois comandos juntos, sem o grid nao tem o gap. */
+  display: grid;
+  gap: 8px;
+}
+
+.quiz-item dl dt{
+  font-size: 14px;
+  color: white;
+  
+  /* espaço entre os elementos */
+  line-height: 24px;
+
+  /* espaço entre as letras */
+  letter-spacing: 0;
+
+  /*como as configurações do input foram retiradas com o comando do "all", essas configurações abaixo precisam existir para que apareça o input na tela alinhado certinho*/
+
+  /* a "bolinha do input" vai ficar flexivel */
+  display: flex;
+
+  /* irá alinhas os itens um ao lado do outro */
+  align-items: center;
+
+  /* gap nesse caso, vai dar um espaçamento entre o input e o texto */
+  gap: 8px;
+}
+
+input{
+  /* pega todos as propriedades do input e retira elas. cada navegador tem seu modo de exibir o input, e essa configuração limpa todas essas configurações.*/
+  all: unset;
+  border: 1px solid aqua;
+  width: 16px;
+  height: 16px;
+
+  /* vai arredondar o input */
+  border-radius: 50%;
+
+  /*tres comando que sao usados para marcar o input e alinha-lo ao centro*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+
+  /* como foi retirado todas as configurações do input no 'all', é preciso colocar o display para que apareça uma opção de marcação. 
+  display: inline-block;*/
+}
+
+/* vai mostrar que o input está selecionado */
+input:checked{
+  border: 1px solid rgb(54, 24, 226);
+}
+
+/*pseudo-selector -> marcação do input*/
+input:checked::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+
+  background-color: rgb(54, 24, 226);
+  border-radius: 50%;
+}
+
+
+/* declaração */
+#acertos{
+  background-color: aqua;
+  text-align: center;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+}
